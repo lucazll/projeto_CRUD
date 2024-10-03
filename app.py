@@ -14,6 +14,10 @@ def main():
         email_entr.delete(0, END)
         senha_entr.delete(0, END)
 
+    def deletar_user(email):
+        email = email_entr.get()
+        services.remover_usuario(email)
+
     def listar_usuario():
         usuarios = services.listar_usuario()
 
@@ -55,28 +59,28 @@ def main():
 
     # nome
     nome = Label(janela, text= 'Nome: ')
-    nome.place(x=40, y=120)
+    nome.place(x=170, y=120)
 
     global nome_entr
     nome_entr = Entry(janela, width= 30)
-    nome_entr.place(x=80, y=120)
+    nome_entr.place(x=220, y=120)
 
     # email
     email = Label(janela, text= 'Email: ')
-    email.place(x=40, y=170)
+    email.place(x=170, y=170)
 
     global email_entr
     email_entr = Entry(janela, width= 30)
-    email_entr.place(x=80, y=170)
+    email_entr.place(x=220, y=170)
 
     # senha
     senha = Label(janela, text='Senha: ')
-    senha.place(x=40, y=220)
+    senha.place(x=170, y=220)
 
     # comando show esconde a senha
     global senha_entr
     senha_entr = Entry(janela, show='*', width= 30)
-    senha_entr.place(x=80, y=220)
+    senha_entr.place(x=220, y=220)
 
    
     # Fazer um butão: 'Button'
@@ -86,6 +90,9 @@ def main():
 
     listar = Button(janela, text='Listar Usuario', width= 15, command = listar_usuario)
     listar.place(x=450, y=350)
+
+    remover = Button(janela, text='remover usuario', width= 15, command =lambda:  deletar_user(email))
+    remover.place(x=450, y=400)
 
 
     # Criando o Frame
