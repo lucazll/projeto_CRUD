@@ -9,7 +9,7 @@ def criar_usuario(nome, email, senha):
 
         cursor = conn.cursor()
 
-        sql = 'INSERT INTO usuarios (nome, email, senha) VALUES (%s, %s, %s)'
+        sql = 'INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)'
         valores = (nome, email, senha)
         cursor.execute(sql, valores)
         conn.commit()
@@ -17,3 +17,16 @@ def criar_usuario(nome, email, senha):
 
     else:
         print('Falha ao conectar ao banco de dados!')
+
+def listar_usuario():
+    if conn.is_connected():
+        print('Banco de dados conectado com Sucesso!')
+
+        cursor = conn.cursor()
+
+        cursor.execute('select id, nome, email from usuario;')
+
+        usuarios = cursor.fetchall()
+        return usuarios
+    else:
+        print('Falha ao conectar com o banco de ddados!')
